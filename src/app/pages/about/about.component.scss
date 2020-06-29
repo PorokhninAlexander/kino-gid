@@ -1,0 +1,119 @@
+*{
+  color: white;
+}
+.page-about{
+  width: 850px;
+  margin: 0 auto;
+  background-color: #222222;
+  padding: 10px;
+}
+.poster-content{
+  display: flex;
+  flex-direction: row;
+
+  //& > img{
+  //width: 240px;
+  //}
+}
+
+.content{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 30px;
+  width: 100%;
+}
+
+h2{
+  color: white;
+  margin-bottom: 0;
+}
+
+table{
+  width: 100%;
+}
+td{
+  width: 50%;
+  padding: 5px;
+}
+tr{
+  border-bottom: 1px white solid;
+}
+
+.description{
+  margin-left: 237px;
+}
+
+.flex-container{
+  display: flex;
+  //flex-flow: wrap;
+  flex-direction: row;
+  overflow: hidden;
+  margin-right: 8px;
+}
+
+.film-card{
+  margin-left: 8px;
+  width: calc(20% - 8px);
+  //height: fit-content;
+  cursor: pointer;
+  position: relative;
+  margin-bottom: 24px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  order: 1;
+}
+
+.film-photo{
+  height: calc(100% - 25px);
+  width: 100%;
+}
+
+.film-name{
+  width: 100%;
+  text-align: center;
+  margin: 0;
+}
+
+.more-info{
+  background-color: #222;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: calc(100% - 25px);
+  //width: 100%;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &:hover{
+    opacity: 0.8;
+  }
+}
+
+.genres{
+  text-align: center;
+}
+
+.carousel{
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  margin-top: 10px;
+  align-items: center;
+
+  & > button{
+    height: 50px;
+    width: 50px;
+    color: black;
+  }
+}
+
+
+
+
+
+
+

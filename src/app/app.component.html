@@ -1,22 +1,38 @@
 <div class="container">
-  <h1 class="title">KinoGid</h1>
-  <div class="search-container">
-    <input class="search-text" type="text">
-    <button class="search-btn">Поиск</button>
-  </div>
-  <div class="flex-container">
+  <a routerLink=""><h1 class="title">KinoGid</h1></a>
+  <hr style="margin-left: 8px">
+<!--  <div class="search-container">-->
+<!--    <input class="search-text" type="text" (input)="text = $event.target.value" (keydown.enter)="find(text)">-->
+<!--    <button class="search-btn" (click)="find(text)">Поиск</button>-->
+<!--  </div>-->
 
-    <div class="film-card" *ngFor="let film of filmsArr">
-      <img class="film-photo" src="{{imgUrl + film.poster_path}}" alt="">
-      <div class="film-name">{{film.title}}</div>
-    </div>
+<!--  <app-popular></app-popular>-->
+  <router-outlet></router-outlet>
+<!--  <div class="flex-container">-->
+<!--  <div class="film-card" *ngFor="let film of filmsArr" (click)="cansole($event)">-->
 
-  </div>
-  <div class="pages-btn">
-    <button [disabled]="numPage === 1" (click)="handlerPage('prev')">Пред. страница</button>
-    <div class="num-page">{{numPage}}</div>
-    <button (click)="handlerPage('next')">След. страница</button>
-  </div>
+<!--    <img class="film-photo" src="{{getImage(film.poster_path)}}" alt="Image not found">-->
+<!--      <div class="film-name">{{film.title}}</div>-->
+<!--      <div class="more-info">-->
+<!--        <div class="rating">Рейтинг: {{film.vote_average}}</div>-->
+<!--        <br>-->
+<!--        <div class="genres">-->
+<!--          Жанры: {{getGenreById(film.genre_ids)}}-->
+<!--        </div>-->
+<!--        <br>-->
+<!--        <div class="date">Дата релиза: {{film.release_date}}</div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--  </div>-->
+
+<!--  <div class="pages-btn">-->
+<!--    <button [disabled]="numPage === '1'" (click)="handlerPage('prev')">Пред. страница</button>-->
+<!--&lt;!&ndash;    <input type="text" class="num-page" value="{{numPage}}" (keydown.enter)="getPopular($event.target.value)">&ndash;&gt;-->
+<!--    <app-num-input [value]="numPage" (newValue)="getPopular($event)"></app-num-input>-->
+<!--    <div>{{' из ' + pageCount}}</div>-->
+<!--    <button (click)="handlerPage('next')">След. страница</button>-->
+<!--  </div>-->
 
 
 
