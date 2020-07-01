@@ -1,19 +1,19 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClientModule} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AboutComponent } from './pages/about/about.component';
-import { FavorieComponent } from './pages/favorie/favorie.component';
-import {DbService} from "./db.service";
+import { FavoriteComponent } from './pages/favorite/favorite.component';
+import {DbService} from './db.service';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { ru_RU } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import ru from '@angular/common/locales/ru';
-import {NzAutocompleteModule, NzPaginationModule, NzToolTipModule} from "ng-zorro-antd";
+import {NzAutocompleteModule, NzIconModule, NzPaginationModule, NzToolTipModule} from 'ng-zorro-antd';
 import { PopularComponent } from './pages/popular/popular.component';
 
 registerLocaleData(ru);
@@ -22,7 +22,7 @@ registerLocaleData(ru);
   declarations: [
     AppComponent,
     AboutComponent,
-    FavorieComponent,
+    FavoriteComponent,
     PopularComponent
   ],
   imports: [
@@ -33,7 +33,8 @@ registerLocaleData(ru);
     BrowserAnimationsModule,
     NzToolTipModule,
     NzAutocompleteModule,
-    NzPaginationModule
+    NzPaginationModule,
+    NzIconModule
   ],
   providers: [DbService, { provide: NZ_I18N, useValue: ru_RU }],
   bootstrap: [AppComponent]

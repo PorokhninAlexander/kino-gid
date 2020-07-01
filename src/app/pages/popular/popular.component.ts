@@ -1,79 +1,73 @@
 import { Component, OnInit } from '@angular/core';
-import {DbService} from "../../db.service";
+import {DbService} from '../../db.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-popular',
   templateUrl: './popular.component.html',
-  styleUrls: ['./popular.component.scss']
+  styleUrls: ['./popular.component.sass']
 })
 export class PopularComponent implements OnInit {
 
-  title = 'kino-gid';
   filmsArr = [];
-  numPage = '1';
+  numPage;
   pageCount = 1;
   text = '';
-  imgUrl = 'https://image.tmdb.org/t/p/w500';
   genresList = [];
 
-  constructor(private db: DbService){}
+  constructor(private db: DbService,
+              private route: ActivatedRoute,
+              private router: Router){
+  }
 
   ngOnInit(): void {
-    this.getPopular(Number.parseInt(this.numPage));
+    this.getNumPage();
     this.getGenres();
   }
 
-  getPopular(numPage: number){
+  getNumPage(): void{
+    this.route.queryParams.subscribe(Params => {
+      this.numPage =  Params.hasOwnProperty('page') ? Params.page : 1;
+      this.getPopular(this.numPage);
+    });
+  }
+
+  getPopular(numPage: number): void{
     this.db.getPopular(numPage).subscribe(response => {
+      this.router.navigate([''], {queryParams: { page : numPage} });
       this.filmsArr = response.results;
       this.pageCount = response.total_pages;
-      this.numPage = numPage.toString();
-    })
+    });
   }
 
-  getGenres(){
+  getGenres(): void{
     this.db.getGenresList().subscribe(response => {
       this.genresList = response.genres;
-    })
+    });
   }
 
-  findByName(text){
-    console.log(text);
+  findByName(text: string): void{
     this.db.findByName(text).subscribe(response => {
       this.filmsArr = response.results;
       this.pageCount = response.total_pages;
       this.numPage = '1';
-    })
+    });
   }
 
-  handlerPage(type: string) {
-    this.numPage = type === 'prev' ? (Number.parseInt(this.numPage) - 1).toString() : (Number.parseInt(this.numPage) + 1).toString();
-    this.getPopular(Number.parseInt(this.numPage))
-  }
-
-  find(text: string) {
-    if(text === ''){
-      this.getPopular(1)
+  find(text: string): void{
+    if (text === ''){
+      this.getPopular(1);
     } else {
-      this.findByName(text)
+      this.findByName(text);
     }
   }
 
-  // getImage(path){
-  //   if (path !== null) return this.imgUrl+path;
-  //   return 'https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg'
-  // }
-
-  getImage(size, path){
-    return this.db.getImage(size, path)
+  getImage(size: string, path: string): string{
+    return this.db.getImage(size, path);
   }
 
-  getGenreById(arr):any{
+  getGenreById(arr): any{
     return  this.genresList.filter(item => arr.indexOf(item.id) !== -1).map(item => item.name).join(', ');
-  }
-
-  cansole(val){
-    console.log(val)
   }
 
 }

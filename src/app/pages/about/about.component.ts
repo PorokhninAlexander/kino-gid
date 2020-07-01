@@ -1,23 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {DbService} from "../../db.service";
+import {ActivatedRoute} from '@angular/router';
+import {DbService} from '../../db.service';
 
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
-  styleUrls: ['./about.component.scss']
+  styleUrls: ['./about.component.sass']
 })
 export class AboutComponent implements OnInit {
 
-  photo = '';
   film;
   filmsArr;
   genresList;
   showArr;
   page = 1;
   style = {
-    transform: `translateX(${(this.page-1)*100}px)`
+    transform: `translateX(${(this.page - 1) * 100}px)`
   };
+  id;
+  favoriteText;
 
   constructor(private route: ActivatedRoute,
               private db: DbService) { }
@@ -25,42 +26,52 @@ export class AboutComponent implements OnInit {
   ngOnInit(): void {
     this.getGenres();
     this.route.params.subscribe(Params => {
-      this.db.getMovieBuId(Params.id).subscribe(response => this.film = response)
-      this.getRecommended(Params.id)
-    })
+      this.id = Params.id;
+      this.db.getMovieBuId(Params.id).subscribe(response => this.film = response);
+      this.getRecommended(Params.id);
+    });
+    this.favText();
   }
 
-  getImage(size, path){
-    return this.db.getImage(size, path)
+  getImage(size: string, path: string): string{
+    return this.db.getImage(size, path);
   }
 
-  strFromArr(arr) {
-    return arr.map(item => item.name).join(', ')
+  strFromArr(arr): string{
+    return arr.map(item => item.name).join(', ');
   }
 
-  getRecommended(id){
+  getRecommended(id: string): void{
     this.db.getRecommended(id).subscribe(response => {
       this.filmsArr = response.results;
-      this.showArr = this.filmsArr.slice(0,5);
-
-    })
+      this.showArr = this.filmsArr.slice(0, 5);
+    });
   }
 
-  getGenres(){
+  getGenres(): void{
     this.db.getGenresList().subscribe(response => {
       this.genresList = response.genres;
-    })
+    });
   }
 
-  getGenreById(arr):any{
+  getGenreById(arr): any{
     return  this.genresList.filter(item => arr.indexOf(item.id) !== -1).map(item => item.name).join(', ');
   }
 
-  newRecomended(page: any) {
+  newRecommended(page: any) {
     this.page = page;
     this.style = {
-      transform: `translateX(${-(page-1)*771}px)`
+      transform: `translateX(${ -(page - 1) * 771 }px)`
     };
-    this.showArr = this.filmsArr.slice((page-1)*5, page*5)
+    this.showArr = this.filmsArr.slice((page - 1) * 5, page * 5);
+  }
+
+  favText(): void{
+    this.favoriteText = this.db.isFavorite(this.id.toString()) ? 'У вас в избранном' : 'Добавить в избранное';
+  }
+
+  onFavorite(val): void{
+    this.db.isFavorite(this.id.toString()) ? this.db.removeFavorite(this.id) : this.db.setFavorite(this.id, JSON.stringify(val));
+    this.favText();
   }
 }

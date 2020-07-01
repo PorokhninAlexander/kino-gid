@@ -1,5 +1,5 @@
 <div class="page-about">
-    <div class="poster-content">
+    <div class="poster-content" >
       <img width="205" height="307.5" src="{{getImage('500', film.poster_path)}}" alt="Image not found">
       <div class="content">
         <h2>{{film.title}}</h2>
@@ -32,6 +32,8 @@
         </table>
       </div>
     </div>
+  <button class="favorite-btn" (click)="onFavorite(film)">{{favoriteText}}</button>
+
   <div class="description">
     <strong>Описание:</strong>
     {{film.overview}}
@@ -39,7 +41,7 @@
 
   <h2>Похожее:</h2>
   <div class="carousel">
-    <button (click)="newRecomended(page-1)" [disabled]="page===1"> < </button>
+    <button (click)="newRecommended(page-1)" [disabled]="page===1"> < </button>
 
       <div class="flex-container">
         <a class="film-card" *ngFor="let film of filmsArr" [routerLink]="['/about',film.id]" [ngStyle]="style">
@@ -58,7 +60,7 @@
         </a>
       </div>
 
-    <button (click)="newRecomended(page+1)" [disabled]="page === 4"> > </button>
+    <button (click)="newRecommended(page+1)" [disabled]="page === 4"> > </button>
 
 
   </div>
