@@ -9,6 +9,9 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class PopularComponent implements OnInit {
 
+  // Компонент отображает список популярных фильмов
+  // Исользуется ng-zorro для пагинации
+
   filmsArr = [];
   numPage;
   pageCount = 1;
@@ -25,6 +28,7 @@ export class PopularComponent implements OnInit {
     this.getGenres();
   }
 
+  // Забирает номер страницы из параметров
   getNumPage(): void{
     this.route.queryParams.subscribe(Params => {
       this.numPage =  Params.hasOwnProperty('page') ? Params.page : 1;
@@ -40,6 +44,7 @@ export class PopularComponent implements OnInit {
     });
   }
 
+  // Запрашивает список всех жанров
   getGenres(): void{
     this.db.getGenresList().subscribe(response => {
       this.genresList = response.genres;
@@ -66,6 +71,7 @@ export class PopularComponent implements OnInit {
     return this.db.getImage(size, path);
   }
 
+  // Принимает массив айди жанров и отдаёт строку через запятую
   getGenreById(arr): any{
     return  this.genresList.filter(item => arr.indexOf(item.id) !== -1).map(item => item.name).join(', ');
   }

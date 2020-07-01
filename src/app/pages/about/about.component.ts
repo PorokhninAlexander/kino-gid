@@ -27,7 +27,7 @@ export class AboutComponent implements OnInit {
     this.getGenres();
     this.route.params.subscribe(Params => {
       this.id = Params.id;
-      this.db.getMovieBuId(Params.id).subscribe(response => this.film = response);
+      this.db.getMovieById(Params.id).subscribe(response => this.film = response);
       this.getRecommended(Params.id);
     });
     this.favText();
@@ -41,6 +41,7 @@ export class AboutComponent implements OnInit {
     return arr.map(item => item.name).join(', ');
   }
 
+  // Функция запроса рекомендаций по айди фильма
   getRecommended(id: string): void{
     this.db.getRecommended(id).subscribe(response => {
       this.filmsArr = response.results;
@@ -58,6 +59,7 @@ export class AboutComponent implements OnInit {
     return  this.genresList.filter(item => arr.indexOf(item.id) !== -1).map(item => item.name).join(', ');
   }
 
+  // Функция отображает список рекомендаций по 5
   newRecommended(page: any) {
     this.page = page;
     this.style = {
@@ -70,6 +72,7 @@ export class AboutComponent implements OnInit {
     this.favoriteText = this.db.isFavorite(this.id.toString()) ? 'У вас в избранном' : 'Добавить в избранное';
   }
 
+  // добавление или удаление фильма из избранного
   onFavorite(val): void{
     this.db.isFavorite(this.id.toString()) ? this.db.removeFavorite(this.id) : this.db.setFavorite(this.id, JSON.stringify(val));
     this.favText();

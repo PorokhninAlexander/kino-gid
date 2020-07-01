@@ -33,7 +33,7 @@ export class DbService {
     return this.http.get<Genre>(this.url + 'genre/movie/list?api_key=' + this.key + '&language=' + this.lang);
   }
 
-  getMovieBuId(id: string): Observable<any>{
+  getMovieById(id: string): Observable<any>{
     return this.http.get(this.url + 'movie/' + id + '?api_key=' + this.key + '&language=' + this.lang);
   }
 
