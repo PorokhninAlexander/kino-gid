@@ -1,27 +1,21 @@
-# KinoGid
+# Kino-gid
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.9.
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+<ul>
+  <li>Реализовано web-приложение на основе [The Movie DataBase Api](https://developers.themoviedb.org/4/getting-started/authorization)</li>
+  <li><ul>Реализованы окна:
+    <li>Популярные фильмы</li>
+    <li>Избранные фильмы</li>
+    <li>Страница полной информации о фильме</li>
+    </ul>
+  </li>
+  <li>Реализован поиск фильмов по имени</li>
+  <li>Программный код офрмлен по Angular Style Guide. <strong>npm run lint</strong></li>
+ <ul>
+<hr>
+   
+<h1>Старт</h1>
+<ul>
+  <li>Запуск приложения <strong>npm start</strong> (используется localhost:4200).</li>
+</ul>
