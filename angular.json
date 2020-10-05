@@ -123,9 +123,16 @@
               "devServerTarget": "kino-gid:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {}
         }
       }
     }
   },
-  "defaultProject": "kino-gid"
+  "defaultProject": "kino-gid",
+  "cli": {
+    "analytics": false
+  }
 }
