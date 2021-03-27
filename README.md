@@ -1,5 +1,7 @@
 # Kino-gid
 
+https://porokhninalexander.github.io/kino-gid
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.9.
 
 <ul>
