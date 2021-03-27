@@ -12,7 +12,7 @@ export interface  Genre{
 
 export class DbService {
   url = 'https://api.themoviedb.org/3/';
-  key = '213b057032dd1e367ace65708714595f';
+  key = '2d876c065ac5b7a42b3e533bdb933cee';
   imgUrl = 'https://image.tmdb.org/t/p/w';
   lang = 'ru-RU';
 
